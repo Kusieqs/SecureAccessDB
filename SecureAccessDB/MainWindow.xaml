@@ -5,8 +5,95 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SecureAccessDB"
         mc:Ignorable="d"
-        Title="LoginPage" Height="450" Width="800">
-    <Grid>
+        Title="LoginPage" Height="550" Width="500">
+    <Window.Resources>
+        <Style x:Key="ButtonRounded" TargetType="Button">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="Background" Value="#ab41ff"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Foreground" Value="#ead0ff"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#ead0ff"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style x:Key="RoundedTextBox" TargetType="TextBox">
+            <Setter Property="Width" Value="250"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Background" Value="#faf4ff"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="10">
+                            <TextBox Text="{TemplateBinding Text}"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             BorderThickness="0"
+                             FontSize="20"
+                             FontWeight="DemiBold"
+                             MaxLength="17"
+                             Background="Transparent"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            
+        </Style>
+    </Window.Resources>
+    <Grid >
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF5955CA"/>
+                <GradientStop Color="#FFB45BFB" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Border Grid.Column="0" Grid.Row="0" Width="350" Height="400" CornerRadius="30" BorderThickness="2" Background="White">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="90"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Sign in" Click="SignIn" Grid.Column="0" Grid.Row="4" Style="{StaticResource ButtonRounded}"/>
+                <Button Content="Sign up" Click="SignUp" Grid.Column="1" Grid.Row="4" Style="{StaticResource ButtonRounded}"/>
+                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Foreground="#830de3" Text="USER LOGIN" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="35" FontWeight="DemiBold"/>
+                <Border Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="2" Background="#981cff" />
+                <TextBox x:Name="Login" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource RoundedTextBox}"/>
+                <TextBox x:Name="Password" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource RoundedTextBox}"/>
+                <TextBlock Text="User name" Grid.Row="2" Width="60" Height="20" Margin="50,11,63,71" Foreground="#830de3" FontWeight="DemiBold"/>
+                <TextBlock Text="Password" Grid.Row="3" Width="60" Height="20" Margin="50,10,63,71" Foreground="#830de3" FontWeight="DemiBold"/>
+                <TextBlock x:Name="LoginFailed" Text="" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Width="200" Height="20" Margin="50,71,96,11" FontSize="10" FontWeight="DemiBold" Foreground="Red"/>
+                <TextBlock x:Name="PasswordFailed" Text="" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Width="200" Height="20" Margin="50,71,96,11" FontSize="10" FontWeight="DemiBold" Foreground="Red"/>
+            </Grid>
+        </Border>
 
     </Grid>
 </Window>

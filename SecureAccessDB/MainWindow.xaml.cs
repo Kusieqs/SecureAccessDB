@@ -8,5 +8,15 @@ namespace SecureAccessDB
         {
             InitializeComponent();
         }
+
+        private void SignIn(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SignUp(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
