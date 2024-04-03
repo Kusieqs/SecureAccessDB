@@ -27,7 +27,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#ead0ff"/>
+                                <Setter Property="Background" Value="#c275ff"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -47,13 +47,14 @@
                             Background="{TemplateBinding Background}"
                             CornerRadius="10">
                             <TextBox Text="{TemplateBinding Text}"
-                             HorizontalAlignment="Center"
-                             VerticalAlignment="Center"
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch"
                              BorderThickness="0"
-                             FontSize="20"
-                             FontWeight="DemiBold"
+                             Background="Transparent"
                              MaxLength="17"
-                             Background="Transparent"/>
+                             FontSize="20"
+                             FontWeight="DemiBold"   
+                             HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -69,10 +70,10 @@
             </LinearGradientBrush>
         </Grid.Background>
 
-        <Border Grid.Column="0" Grid.Row="0" Width="350" Height="400" CornerRadius="30" BorderThickness="2" Background="White">
+        <Border Grid.Column="0" Grid.Row="0" Width="350" Height="400" CornerRadius="30" BorderThickness="2" Background="#FFF9EDFF">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="80"/>
                     <RowDefinition Height="2"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -86,7 +87,7 @@
                 <Button Content="Sign up" Click="SignUp" Grid.Column="1" Grid.Row="4" Style="{StaticResource ButtonRounded}"/>
                 <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Foreground="#830de3" Text="USER LOGIN" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="35" FontWeight="DemiBold"/>
                 <Border Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="2" Background="#981cff" />
-                <TextBox x:Name="Login" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource RoundedTextBox}"/>
+                <TextBox x:Name="Login" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"  Style="{StaticResource RoundedTextBox}"/>
                 <TextBox x:Name="Password" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource RoundedTextBox}"/>
                 <TextBlock Text="User name" Grid.Row="2" Width="60" Height="20" Margin="50,11,63,71" Foreground="#830de3" FontWeight="DemiBold"/>
                 <TextBlock Text="Password" Grid.Row="3" Width="60" Height="20" Margin="50,10,63,71" Foreground="#830de3" FontWeight="DemiBold"/>
