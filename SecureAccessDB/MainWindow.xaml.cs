@@ -38,6 +38,9 @@ namespace SecureAccessDB
         
         private void SignIn(object sender, RoutedEventArgs e)
         {
+            login = Login.Text;
+            password = Password.Text;
+
             bool correct;
             CheckingEmptyText(login, password, out correct);
 
@@ -58,7 +61,6 @@ namespace SecureAccessDB
             correct = true;
             if (string.IsNullOrEmpty(login))
             {
-                MessageBox.Show(login);
                 correct = false;
                 LoginFailed.Text = "Username not provided";
             }
@@ -75,12 +77,11 @@ namespace SecureAccessDB
         {
             if(LoginFailed.Text != "")
                 LoginFailed.Text = "";
-            TextBox textBox = (TextBox)sender;
-            login = textBox.Text;
         }
         private void PasswordChanged(object sender, RoutedEventArgs e)
         {
-            PasswordFailed.Text = "";
+            if (PasswordFailed.Text != "")
+                PasswordFailed.Text = "";
         }
     }
 }
