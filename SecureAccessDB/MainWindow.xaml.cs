@@ -3,10 +3,14 @@ using System.Windows;
 using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Security.Policy;
+using System.Windows.Controls;
 namespace SecureAccessDB
 {
     public partial class LoginPage : Window
     {
+        private string login;
+        private string password;
         
         public LoginPage()
         {
@@ -34,8 +38,6 @@ namespace SecureAccessDB
         
         private void SignIn(object sender, RoutedEventArgs e)
         {
-            string login = Login.Text;
-            string password = Password.Text;
             bool correct;
             CheckingEmptyText(login, password, out correct);
 
@@ -56,15 +58,29 @@ namespace SecureAccessDB
             correct = true;
             if (string.IsNullOrEmpty(login))
             {
+                MessageBox.Show(login);
                 correct = false;
-                // red text
+                LoginFailed.Text = "Username not provided";
             }
 
             if (string.IsNullOrEmpty(password))
             {
                 correct = false;
-                // red text
+                PasswordFailed.Text = "Password not provided";
             }
+
+        }
+
+        private void LoginChanged(object sender, RoutedEventArgs e)
+        {
+            if(LoginFailed.Text != "")
+                LoginFailed.Text = "";
+            TextBox textBox = (TextBox)sender;
+            login = textBox.Text;
+        }
+        private void PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            PasswordFailed.Text = "";
         }
     }
 }
