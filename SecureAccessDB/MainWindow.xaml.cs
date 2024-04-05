@@ -11,7 +11,7 @@ namespace SecureAccessDB
     {
         private string login;
         private string password;
-        
+
         public LoginPage()
         {
             InitializeComponent();
@@ -23,7 +23,7 @@ namespace SecureAccessDB
             {
                 var client = new WebClient();
                 var stream = client.OpenRead("http://www.google.com");
-                if(stream == null)
+                if (stream == null)
                 {
                     client.Dispose();
                     throw new Exception();
@@ -35,7 +35,7 @@ namespace SecureAccessDB
                 Close();
             }
         }
-        
+
         private void SignIn(object sender, RoutedEventArgs e)
         {
             login = Login.Text;
@@ -49,6 +49,13 @@ namespace SecureAccessDB
 
             SqlConnection sql = new SqlConnection();
             sql.Open();
+
+            CheckingLogin(sql, ref correct);
+
+            if (!correct)
+                return;
+
+
         }
 
         private void SignUp(object sender, RoutedEventArgs e)
@@ -56,6 +63,19 @@ namespace SecureAccessDB
 
         }
 
+        private void CheckingLogin(SqlConnection sql, ref bool correct)
+        {
+            string sqlQuery = $"Select Username From Users Where Username = @login";
+            SqlCommand command = new SqlCommand(sqlQuery, sql);
+            command.Parameters.AddWithValue("@login", login);
+            SqlDataReader reader = command.ExecuteReader();
+
+            if(!reader.HasRows)
+            {
+                correct = false;
+                LoginFailed.Text = "User doesn't exist";
+            }
+        }
         private void CheckingEmptyText(string login, string password,out bool correct)
         {
             correct = true;
@@ -72,7 +92,6 @@ namespace SecureAccessDB
             }
 
         }
-
         private void LoginChanged(object sender, RoutedEventArgs e)
         {
             if(LoginFailed.Text != "")
