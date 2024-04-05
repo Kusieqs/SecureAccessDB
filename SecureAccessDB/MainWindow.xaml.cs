@@ -50,33 +50,55 @@ namespace SecureAccessDB
             SqlConnection sql = new SqlConnection();
             sql.Open();
 
-            CheckingLogin(sql, ref correct);
 
-            if (!correct)
+            if (CheckingLogin(sql))
+                return;
+            if (CheckingPassword(sql))
                 return;
 
-
+            MessageBox.Show("Correct sign in","Correct",MessageBoxButton.OK, MessageBoxImage.Information);
+            Close();
         }
 
         private void SignUp(object sender, RoutedEventArgs e)
         {
 
         }
-
-        private void CheckingLogin(SqlConnection sql, ref bool correct)
+        private bool CheckingLogin(SqlConnection sql)
         {
             string sqlQuery = $"Select Username From Users Where Username = @login";
             SqlCommand command = new SqlCommand(sqlQuery, sql);
             command.Parameters.AddWithValue("@login", login);
             SqlDataReader reader = command.ExecuteReader();
 
-            if(!reader.HasRows)
+            if (!reader.HasRows)
             {
-                correct = false;
                 LoginFailed.Text = "User doesn't exist";
+                reader.Close();
+                return true;
             }
+            reader.Close();
+            return false;
+
         }
-        private void CheckingEmptyText(string login, string password,out bool correct)
+        private bool CheckingPassword(SqlConnection sql)
+        {
+            string sqlQuery = $"Select Password, Username From Users Where Password = @password and Username = @login";
+            SqlCommand command = new SqlCommand(sqlQuery, sql);
+            command.Parameters.AddWithValue("@password", password);
+            command.Parameters.AddWithValue("@login", login);
+            SqlDataReader reader = command.ExecuteReader();
+
+            if (!reader.HasRows)
+            {
+                PasswordFailed.Text = "Password is not correct";
+                reader.Close();
+                return true;
+            }
+            reader.Close();
+            return false;
+        }
+        private void CheckingEmptyText(string login, string password, out bool correct)
         {
             correct = true;
             if (string.IsNullOrEmpty(login))
@@ -94,7 +116,7 @@ namespace SecureAccessDB
         }
         private void LoginChanged(object sender, RoutedEventArgs e)
         {
-            if(LoginFailed.Text != "")
+            if (LoginFailed.Text != "")
                 LoginFailed.Text = "";
         }
         private void PasswordChanged(object sender, RoutedEventArgs e)
