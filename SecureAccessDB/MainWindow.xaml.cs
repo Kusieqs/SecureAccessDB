@@ -5,13 +5,15 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Security.Policy;
 using System.Windows.Controls;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 namespace SecureAccessDB
 {
     public partial class LoginPage : Window
     {
         private string login;
         private string password;
-
+        private Registration registration;
         public LoginPage()
         {
             InitializeComponent();
@@ -32,7 +34,7 @@ namespace SecureAccessDB
             catch
             {
                 MessageBox.Show("No internet connection", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                Close();
+                this.Close();
             }
         }
 
@@ -62,7 +64,14 @@ namespace SecureAccessDB
 
         private void SignUp(object sender, RoutedEventArgs e)
         {
-
+            registration = new Registration();
+            registration.Show();
+            this.IsEnabled = false;
+            registration.Closed += (s, args) =>
+            {
+                this.IsEnabled = true;
+                Focus();
+            };
         }
         private bool CheckingLogin(SqlConnection sql)
         {
@@ -124,5 +133,12 @@ namespace SecureAccessDB
             if (PasswordFailed.Text != "")
                 PasswordFailed.Text = "";
         }
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            if(registration != null && registration.IsVisible)
+                e.Cancel = true;
+        }
+
     }
 }

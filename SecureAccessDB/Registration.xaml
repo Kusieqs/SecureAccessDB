@@ -84,7 +84,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Content="Back" Click="SignIn" Grid.Column="0" Grid.Row="6" Style="{StaticResource ButtonRounded}"/>
+                <Button Content="Back" Click="Back" Grid.Column="0" Grid.Row="6" Style="{StaticResource ButtonRounded}"/>
                 <Button Content="Accept" Click="SignUp" Grid.Column="1" Grid.Row="6" Style="{StaticResource ButtonRounded}"/>
                 <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Foreground="#830de3" Text="REGISTRATION" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="35" FontWeight="DemiBold"/>
                 <Border Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="2" Background="#981cff" />
