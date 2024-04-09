@@ -29,7 +29,7 @@ namespace SecureAccessDB
 
         private void SignUp(object sender, RoutedEventArgs e)
         {
-
+            LoginPage.NetworkCheck(this);
         }
         private void LoginChanged(object sender, RoutedEventArgs e)
         {
