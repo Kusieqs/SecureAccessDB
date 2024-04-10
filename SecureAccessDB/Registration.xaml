@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SecureAccessDB"
         mc:Ignorable="d"
-        Title="Registration" Height="750" Width="500">
+        Title="Registration" Height="750" Width="500" Loaded="ConnectNetworkCheck">
     <Window.Resources>
         <Style x:Key="ButtonRounded" TargetType="Button">
             <Setter Property="Width" Value="120"/>

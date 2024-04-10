@@ -18,7 +18,6 @@ namespace SecureAccessDB
         {
             InitializeComponent();
         }
-
         private void ConnectNetworkCheck(object sender, EventArgs e)
         {
             NetworkCheck(this);
