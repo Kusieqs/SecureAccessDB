@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Printing;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -39,8 +40,16 @@ namespace SecureAccessDB
             if (!CheckAllParameters(sql))
                 return;
 
+            string sqlQuery = "Insert Into Users (Username, Password, Email, RegistrationDate)";
+            string values = $"\nValues ('{Login.Text}','{Password.Text}','{Email.Text}',Getdate())";
+            sqlQuery += values ;
+            SqlCommand command = new SqlCommand(sqlQuery, sql);
+            command.ExecuteNonQuery();
 
             sql.Close();
+            MessageBox.Show("Correct registration","Information",MessageBoxButton.OK, MessageBoxImage.Information);
+            this.Close();
+
         }
         #region Feature when text was changing
         private void LoginChanged(object sender, RoutedEventArgs e)
@@ -95,7 +104,7 @@ namespace SecureAccessDB
         }
         private bool CheckAllParameters(SqlConnection sql)
         {
-            return LoginCheck(sql) & PasswordCheck() & RepeatPasswordCheck();
+            return LoginCheck(sql) & PasswordCheck() & RepeatPasswordCheck() & EmailCheck(sql);
         }
         private bool LoginCheck(SqlConnection sql)
         {
@@ -165,8 +174,15 @@ namespace SecureAccessDB
                 return false;
             }
             reader.Close();
+            string pattern = @"^[^\.\s][.\w]*@[.\w]+\.[a-zA-Z]{2,4}$";
 
-            // regex
+            if(!Regex.IsMatch(Email.Text, pattern))
+            {
+                EmailFailed.Text = "This email is not correct";
+                return false;
+            }
+
+            return true;
         }
     }
 }
