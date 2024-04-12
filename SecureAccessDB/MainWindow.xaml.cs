@@ -39,6 +39,7 @@ namespace SecureAccessDB
                 catch
                 {
                     MessageBoxResult result = MessageBox.Show("No internet connection\nDo you want try again?" , "Error", MessageBoxButton.YesNo, MessageBoxImage.Error);
+
                     if (result == MessageBoxResult.No)
                         window.Close();
                     else
@@ -64,9 +65,7 @@ namespace SecureAccessDB
             sql.Open();
 
 
-            if (CheckingLogin(sql))
-                return;
-            if (CheckingPassword(sql))
+            if (CheckingLogin(sql) || CheckingPassword(sql))
                 return;
 
             MessageBox.Show("Correct sign in","Correct",MessageBoxButton.OK, MessageBoxImage.Information);
