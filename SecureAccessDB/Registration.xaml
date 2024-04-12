@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SecureAccessDB"
         mc:Ignorable="d"
-        Title="Registration" Height="750" Width="500" Loaded="ConnectNetworkCheck">
+        Title="Registration" Height="750" Width="500" Loaded="ConnectNetworkCheck" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="ButtonRounded" TargetType="Button">
             <Setter Property="Width" Value="120"/>
@@ -50,8 +50,8 @@
                              VerticalAlignment="Stretch"
                              BorderThickness="0"
                              Background="Transparent"
-                             MaxLength="17"
-                             FontSize="20"
+                             FontSize="18"
+                             MaxLength="25"
                              FontWeight="DemiBold"   
                              HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                         </Border>
@@ -90,8 +90,8 @@
                 <Border Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="2" Background="#981cff" />
                 <TextBox x:Name="Login" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" TextChanged="LoginChanged"  Style="{StaticResource RoundedTextBox}"/>
                 <TextBox x:Name="Email" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" TextChanged="EmailChanged"  Style="{StaticResource RoundedTextBox}"/>
-                <TextBox x:Name="Password" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" TextChanged="PasswordChanged"  Style="{StaticResource RoundedTextBox}"/>
-                <TextBox x:Name="RepeatPassword" MaxLength="40" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" TextChanged="RepeatPasswordChanged"  Style="{StaticResource RoundedTextBox}"/>
+                <TextBox x:Name="Password" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" TextChanged="PasswordChanged"   Style="{StaticResource RoundedTextBox}"/>
+                <TextBox x:Name="RepeatPassword" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" TextChanged="RepeatPasswordChanged"  Style="{StaticResource RoundedTextBox}"/>
                 <TextBlock Text="User name" Grid.Row="2" Width="60" Height="20" Margin="50,11,63,71" Foreground="#830de3" FontWeight="DemiBold"/>
                 <TextBlock Text="Email" Grid.Row="3" Width="60" Height="20" Margin="50,11,63,71" Foreground="#830de3" FontWeight="DemiBold"/>
                 <TextBlock Text="Password" Grid.Row="4" Width="60" Height="20" Margin="50,11,63,71" Foreground="#830de3" FontWeight="DemiBold"/>

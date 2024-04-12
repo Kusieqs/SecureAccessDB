@@ -26,7 +26,7 @@ namespace SecureAccessDB
         private void Back(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        } // Close window
         private void SignUp(object sender, RoutedEventArgs e)
         {
             LoginPage.NetworkCheck(this);
@@ -50,7 +50,7 @@ namespace SecureAccessDB
             MessageBox.Show("Correct registration","Information",MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();
 
-        }
+        } // Button to sign up account
         #region Feature when text was changing
         private void LoginChanged(object sender, RoutedEventArgs e)
         {
@@ -72,7 +72,7 @@ namespace SecureAccessDB
         private void ConnectNetworkCheck(object sender, EventArgs e)
         {
             LoginPage.NetworkCheck(this);
-        }
+        } // checking network connection
         private bool CheckingEmptyString()
         {
             bool correct = true;
@@ -101,12 +101,12 @@ namespace SecureAccessDB
             }
             return correct;
 
-        }
+        } // checking empty area and writing message
         private bool CheckAllParameters(SqlConnection sql)
         {
             return LoginCheck(sql) & PasswordCheck() & RepeatPasswordCheck() & EmailCheck(sql);
-        }
-        private bool LoginCheck(SqlConnection sql)
+        } // feature with checking 4 features
+        private bool LoginCheck(SqlConnection sql) 
         {
             if(Login.Text.Length < 4) 
             {
@@ -134,7 +134,7 @@ namespace SecureAccessDB
             reader.Close();
             return true;
 
-        }
+        } // Checking login (new login can not be in db before)
         private bool PasswordCheck()
         {
             if(Password.Text.Length < 6)
@@ -151,7 +151,7 @@ namespace SecureAccessDB
 
             return true;
 
-        }
+        } // Checking password (correct length)
         private bool RepeatPasswordCheck()
         {
             if (RepeatPassword.Text.Trim() != Password.Text.Trim())
@@ -160,7 +160,7 @@ namespace SecureAccessDB
                 return false;
             }
             return true;
-        }
+        } // checkiong 2 passwords whether they are same
         private bool EmailCheck(SqlConnection sql)
         {
             string sqlQuery = $"Select email From Users Where email = @email";
@@ -183,6 +183,6 @@ namespace SecureAccessDB
             }
 
             return true;
-        }
+        } // Checking email (new email can not be in db before)
     }
 }
